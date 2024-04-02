@@ -1,0 +1,10 @@
+#version: '3.8'
+services:
+    
+    app:
+      container_name: app-dataton
+      build: .
+      ports: 
+        - '8010:8501'
+      expose:
+        - '8501'

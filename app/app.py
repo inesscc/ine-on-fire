@@ -15,7 +15,7 @@ with tab1:
       
 
    # Crear el mapa utilizando Plotly Express
-   fig = px.scatter_mapbox(data, lat="centroid_lat", lon="centroid_lon", color="peak_hour", size="car_hours",
+   fig = px.scatter_mapbox(data, lat="centroid_lat", lon="centroid_lon", color="peak_hour",
                             color_continuous_scale=px.colors.cyclical.IceFire, size_max=15, zoom=10,
                             mapbox_style="carto-positron")
    fig.update_layout(mapbox_style="open-street-map")
