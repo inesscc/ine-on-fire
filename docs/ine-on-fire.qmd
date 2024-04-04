@@ -1,6 +1,4 @@
 ---
-title: "Aplicación dónde está el Censo"
-author: "Proyecto Ciencia de Datos"
 format:
   revealjs:
     auto-stretch: false
