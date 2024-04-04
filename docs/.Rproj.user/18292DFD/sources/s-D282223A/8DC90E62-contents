@@ -1,0 +1,79 @@
+---
+title: "Aplicación dónde está el Censo"
+author: "Proyecto Ciencia de Datos"
+format:
+  revealjs:
+    auto-stretch: false
+    margin: 0
+    slide-number: true
+    scrollable: true
+    preview-links: auto
+    logo: imagenes/logo_portada2.png
+    css: ine_quarto_styles.css
+    # footer: <https://quarto.org>
+---
+
+#
+
+[]{.linea-superior} 
+[]{.linea-inferior} 
+
+<img src="imagenes/logo_portada2.png" width="20%"/>  
+
+
+[**INE ON FIRE**]{.big-par .center-justified}
+[**Sistema de predicción de incendios**]{.big-par .center-justified}
+[**Abril 2024**]{.big-par .center-justified}
+
+
+
+# El problema
+
+. . .
+
+[Los incendios en Valparaíso afectan al **medioambiente**, a la **población** y a la **actividad económica**   ]{.huge-par}
+
+. . .
+
+[Existen pocos datos para gestionar tempranamente los territorios]{.huge-par}
+
+
+
+## Solución
+
+
+Identificar zonas de riesgo, para intervenir los territorios tempranamente 
+
+. . .
+
+¡¡PENDIENTE!!: Completar con imagen de predicciones para algún territorio 
+
+
+. . .
+
+En producción, la aplicación hará predicciones con una periodicidad semanal
+  
+
+## Arquitectura
+
+[<img src="imagenes/arquitectura.PNG" width="1000px"/>]{.center}
+
+
+# ¡Veamos una demostración!
+
+
+# 
+
+[<img src="imagenes/logo_portada2.png" width="20%"/>]{.center}
+
+
+[**INE ON FIRE**]{.big-par .center-justified}
+[**Sistema de predicción de incendios**]{.big-par .center-justified}
+[**Abril 2024**]{.big-par .center-justified}
+
+
+
+
+[]{.linea-superior} 
+[]{.linea-inferior} 
+

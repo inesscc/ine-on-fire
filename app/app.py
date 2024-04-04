@@ -2,23 +2,59 @@ import streamlit as st
 import plotly.express as px
 import pandas as pd
 import helpers as h
+import plotly.graph_objects as go
+
+
 
 tab1, tab2 = st.tabs(["Predicciones", "Métricas"])
 
 
 with tab1:
-   st.header("Predicciones para un mes")
-   date = st.selectbox("Selecciona alguna fecha", ["10-03-2023", "17-05-2023", "20-08-2023"])
 
-   # Datos de ejemplo
-   data = h.load_and_filter_data()
-      
+   data = h.load_data()
+
+   dropdown_dates  = h.get_dates(data)
+   st.header("Predicciones para un mes")
+   selected_date = st.selectbox("Selecciona alguna fecha", dropdown_dates)
+   filtered_data = h.filter_data(data, selected_date )
+   print("Logré leer y filtrar")
 
    # Crear el mapa utilizando Plotly Express
-   fig = px.scatter_mapbox(data, lat="centroid_lat", lon="centroid_lon", color="peak_hour",
-                            color_continuous_scale=px.colors.cyclical.IceFire, size_max=15, zoom=10,
-                            mapbox_style="carto-positron")
-   fig.update_layout(mapbox_style="open-street-map")
+   fig = go.Figure(data=go.Scattergeo(
+      lon=filtered_data.geometry.x,
+      lat=filtered_data.geometry.y,
+      marker=dict(
+         color=filtered_data["ndvi"],
+         colorscale='Viridis',  # Cambia 'Viridis' al esquema de color que prefieras
+         cmin=min(filtered_data["ndvi"]),
+         cmax=max(filtered_data["ndvi"]),
+         colorbar=dict(
+               title="NDVI"
+         )
+      ),
+      mode='markers'
+   ))
+   print("Logré hacer el gráfico")
+
+   fig.update_geos(
+      center=dict(lon=-71.14894242520268, lat=-33.17148845759217),
+      showcountries=True,
+      showocean=True,
+      showland=True,
+      showrivers=True,
+      showlakes=True,
+      projection_scale=200
+
+   )
+
+   fig.update_layout(
+         title = 'Predicciones',
+            mapbox_style="outdoors"       
+
+      )
+
+   print("Logré hacer todo el gráfico")
+
    st.plotly_chart(fig, use_container_width=True)
 
 
