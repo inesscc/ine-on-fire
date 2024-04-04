@@ -4,8 +4,11 @@
 defaults:
   - trainer: default.yaml
   - model: greecefire_LSTM_model.yaml
+  # - model: greecefire_ConvLSTM_model.yaml
   - datamodule: fireds_temporal_datamodule.yaml
-  - callbacks: default.yaml # set this to null if you don't want to use callbacks
+  # - datamodule: fireds_temporal_datamodule.yaml
+  # - callbacks: default.yaml # set this to null if you don't want to use callbacks
+  - callbacks: null # set this to null if you don't want to use callbacks  
   - logger: wandb # set logger here or use command line (e.g. `python run.py logger=wandb`)
 
   - experiment: null
@@ -44,7 +47,7 @@ test_after_training: True
 
 seed: 1234
 
-
+# n = 35
 sel_dynamic_features: [
     '1 km 16 days NDVI',
 #    '1 km 16 days EVI',
@@ -83,7 +86,7 @@ sel_dynamic_features: [
 #    'era5_avg_rh',
 ]
 
-
+# n = 7
 sel_static_features : [
  'dem_mean',
 # 'aspect_mean',

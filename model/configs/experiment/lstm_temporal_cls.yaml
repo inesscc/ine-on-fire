@@ -7,15 +7,17 @@ defaults:
   - override /trainer: default.yaml # choose trainer from 'configs/trainer/'
   - override /model: greecefire_LSTM_model.yaml
   - override /datamodule: fireds_temporal_datamodule.yaml
-  - override /callbacks: default.yaml
-  - override /logger: wandb.yaml
+  # - override /callbacks: default.yaml
+  - override /callbacks: null
+  # - override /logger: wandb.yaml
+  - override /logger: tensorboard.yaml  
 
 # all parameters below will be merged with parameters from default configurations set above
 # this allows you to overwrite only specified parameters
 
-logger:
-  wandb:
-    name: ${oc.env:WANDB_NAME_PREFIX}_LSTM_sweep_${now:%Y%m%d_%H%M}
+# logger:
+#   wandb:
+#     name: ${oc.env:WANDB_NAME_PREFIX}_LSTM_sweep_${now:%Y%m%d_%H%M}
 
 model:
   hidden_size: 64

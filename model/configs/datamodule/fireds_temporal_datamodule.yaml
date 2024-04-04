@@ -1,6 +1,7 @@
 _target_: wildfire_forecasting.datamodules.greecefire_datamodule.FireDSDataModule
 
-dataset_root: *must be set to where the dataset has been downloaded*
+# dataset_root: /home/hugosoto/Work/git/ine-on-fire/model/data/sample_paper/
+dataset_root: /media/hugosoto/Elements/dataton_do_2024/datasets_grl/
 batch_size: 256
 num_workers: 16
 pin_memory: False

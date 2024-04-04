@@ -69,6 +69,8 @@ class ConvLSTM_fire_model(LightningModule):
             clc='vec'
     ):
         super().__init__()
+        self.validation_step_outputs = []
+
         # this line ensures params passed to LightningModule will be saved to ckpt
         # it also allows to access params with 'self.hparams' attribute
         self.save_hyperparameters()
@@ -81,17 +83,17 @@ class ConvLSTM_fire_model(LightningModule):
         # to ensure a proper reduction over the epoch
 
         # Accuracy, AUROC, AUC, ConfusionMatrix
-        self.train_accuracy = Accuracy()
-        self.train_auc = AUROC(pos_label=1)
-        self.train_auprc = AveragePrecision()
+        self.train_accuracy = Accuracy(task='binary')
+        self.train_auc = AUROC(task='binary')
+        self.train_auprc = AveragePrecision(task='binary')
 
-        self.val_accuracy = Accuracy()
-        self.val_auc = AUROC(pos_label=1)
-        self.val_auprc = AveragePrecision()
+        self.val_accuracy = Accuracy(task='binary')
+        self.val_auc = AUROC(task='binary')
+        self.val_auprc = AveragePrecision(task='binary')
 
-        self.test_accuracy = Accuracy()
-        self.test_auc = AUROC(pos_label=1)
-        self.test_auprc = AveragePrecision()
+        self.test_accuracy = Accuracy(task='binary')
+        self.test_auc = AUROC(task='binary')
+        self.test_auprc = AveragePrecision(task='binary')
 
     def forward(self, x: torch.Tensor):
         return self.model(x)
@@ -123,9 +125,14 @@ class ConvLSTM_fire_model(LightningModule):
         self.log("train/auprc", self.train_auprc, on_step=False, on_epoch=True, prog_bar=False)
         return {"loss": loss, "preds": preds, "targets": targets}
 
-    def training_epoch_end(self, outputs: List[Any]):
+    # def training_epoch_end(self, outputs: List[Any]):
+    #     # `outputs` is a list of dicts returned from `training_step()`
+    #     pass
+
+    # def on_train_epoch_end(self, outputs: List[Any]):
+    def on_train_epoch_end(self):        
         # `outputs` is a list of dicts returned from `training_step()`
-        pass
+        pass    
 
     def validation_step(self, batch: Any, batch_idx: int):
         loss, preds, preds_proba, targets = self.step(batch)
@@ -140,9 +147,20 @@ class ConvLSTM_fire_model(LightningModule):
         self.log("val/acc", self.val_accuracy, on_step=False, on_epoch=True, prog_bar=False)
         self.log("val/auc", self.val_auc, on_step=False, on_epoch=True, prog_bar=False)
         self.log("val/auprc", self.val_auprc, on_step=False, on_epoch=True, prog_bar=False)
+
+        self.validation_step_outputs.append(loss)
+        self.validation_step_outputs.append(preds)
+        self.validation_step_outputs.append(targets)
+        self.validation_step_outputs.append(preds_proba)
+
         return {"loss": loss, "preds": preds, "targets": targets, "preds_proba": preds_proba}
 
-    def validation_epoch_end(self, outputs: List[Any]):
+    # def validation_epoch_end(self, outputs: List[Any]):
+    #     pass
+
+    # def on_validation_epoch_end(self, outputs: List[Any]):
+    def on_validation_epoch_end(self):
+        # `outputs` is a list of dicts returned from `training_step()`
         pass
 
     def test_step(self, batch: Any, batch_idx: int):
@@ -160,7 +178,10 @@ class ConvLSTM_fire_model(LightningModule):
         self.log("test/auprc", self.test_auprc, on_step=False, on_epoch=True, prog_bar=False)
         return {"loss": loss, "preds": preds, "targets": targets}
 
-    def test_epoch_end(self, outputs: List[Any]):
+    # def test_epoch_end(self, outputs: List[Any]):
+    #     pass
+
+    def on_test_epoch_end(self):
         pass
 
     def configure_optimizers(self):
@@ -203,6 +224,8 @@ class LSTM_fire_model(LightningModule):
             clc='vec'
     ):
         super().__init__()
+        self.validation_step_outputs = []
+
         # this line ensures params passed to LightningModule will be saved to ckpt
         # it also allows to access params with 'self.hparams' attribute
         self.save_hyperparameters()
@@ -218,17 +241,17 @@ class LSTM_fire_model(LightningModule):
         # to ensure a proper reduction over the epoch
 
         # Accuracy, AUROC, AUC, ConfusionMatrix
-        self.train_accuracy = Accuracy()
-        self.train_auc = AUROC(pos_label=1)
-        self.train_auprc = AveragePrecision()
+        self.train_accuracy = Accuracy(task='binary')
+        self.train_auc = AUROC(task='binary')
+        self.train_auprc = AveragePrecision(task='binary')
 
-        self.val_accuracy = Accuracy()
-        self.val_auc = AUROC(pos_label=1)
-        self.val_auprc = AveragePrecision()
+        self.val_accuracy = Accuracy(task='binary')
+        self.val_auc = AUROC(task='binary')
+        self.val_auprc = AveragePrecision(task='binary')
 
-        self.test_accuracy = Accuracy()
-        self.test_auc = AUROC(pos_label=1)
-        self.test_auprc = AveragePrecision()
+        self.test_accuracy = Accuracy(task='binary')
+        self.test_auc = AUROC(task='binary')
+        self.test_auprc = AveragePrecision(task='binary')
 
     def forward(self, x: torch.Tensor):
         return self.model(x)
@@ -260,9 +283,14 @@ class LSTM_fire_model(LightningModule):
         self.log("train/auprc", self.train_auprc, on_step=False, on_epoch=True, prog_bar=False)
         return {"loss": loss, "preds": preds, "targets": targets}
 
-    def training_epoch_end(self, outputs: List[Any]):
+    # def training_epoch_end(self, outputs: List[Any]):
+    #     # `outputs` is a list of dicts returned from `training_step()`
+    #     pass
+
+    # def on_train_epoch_end(self, outputs: List[Any]):
+    def on_train_epoch_end(self):        
         # `outputs` is a list of dicts returned from `training_step()`
-        pass
+        pass    
 
     def validation_step(self, batch: Any, batch_idx: int):
         loss, preds, preds_proba, targets = self.step(batch)
@@ -276,9 +304,20 @@ class LSTM_fire_model(LightningModule):
         self.log("val/acc", self.val_accuracy, on_step=False, on_epoch=True, prog_bar=False)
         self.log("val/auc", self.val_auc, on_step=False, on_epoch=True, prog_bar=False)
         self.log("val/auprc", self.val_auprc, on_step=False, on_epoch=True, prog_bar=False)
+
+        self.validation_step_outputs.append(loss)
+        self.validation_step_outputs.append(preds)
+        self.validation_step_outputs.append(targets)
+        self.validation_step_outputs.append(preds_proba)
+
         return {"loss": loss, "preds": preds, "targets": targets, "preds_proba": preds_proba}
 
-    def validation_epoch_end(self, outputs: List[Any]):
+    # def validation_epoch_end(self, outputs: List[Any]):
+    #     pass
+
+    # def on_validation_epoch_end(self, outputs: List[Any]):
+    def on_validation_epoch_end(self):
+        # `outputs` is a list of dicts returned from `training_step()`
         pass
 
     def test_step(self, batch: Any, batch_idx: int):
@@ -296,7 +335,10 @@ class LSTM_fire_model(LightningModule):
         self.log("test/auprc", self.test_auprc, on_step=False, on_epoch=True, prog_bar=False)
         return {"loss": loss, "preds": preds, "targets": targets}
 
-    def test_epoch_end(self, outputs: List[Any]):
+    # def test_epoch_end(self, outputs: List[Any]):
+    #     pass
+
+    def on_test_epoch_end(self):
         pass
 
     def configure_optimizers(self):
