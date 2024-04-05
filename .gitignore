@@ -2,3 +2,5 @@ data/
 .idea/
 __pycache__/
 venv/
+*.gz
+pruebas.ipynb
