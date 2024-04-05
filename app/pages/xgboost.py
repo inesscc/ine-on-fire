@@ -39,6 +39,13 @@ with tab2:
    # Mostrar la tabla
    st.table(df)
 
+   st.write("### Variables más importantes para el modelo")
+ 
+   st.image('pages/images/variables_importantes_xgb.png')
+
+   st.write("### Matriz de confusión")
+   st.image('pages/images/matriz_confusion_xgb.png')
+
 css = '''
 <style>
     .stTabs [data-baseweb="tab-list"] button [data-testid="stMarkdownContainer"] p {
