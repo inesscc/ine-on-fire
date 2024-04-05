@@ -31,16 +31,17 @@ class FireDSDataModule(LightningDataModule):
             problem_class: str = 'classification',
             nan_fill: float = 0.5,
             sel_dynamic_features=None,
-            sel_static_features=None,
+            # sel_static_features=None,
             prefetch_factor: int = 2,
             persistent_workers: bool = True,
-            clc: str = 'vec'
+            clc = None
+            # clc: str = 'vec'
     ):
         super().__init__()
         if sel_dynamic_features is None:
             sel_dynamic_features = []
-        if sel_static_features is None:
-            sel_static_features = []
+        # if sel_static_features is None:
+        #     sel_static_features = []
         self.prefetch_factor = prefetch_factor
         self.persistent_workers = persistent_workers
         self.nan_fill = nan_fill
@@ -56,7 +57,7 @@ class FireDSDataModule(LightningDataModule):
         self.pin_memory = pin_memory
 
         self.sel_dynamic_features = sel_dynamic_features
-        self.sel_static_features = sel_static_features
+        # self.sel_static_features = sel_static_features
 
         if not dataset_root:
             raise ValueError('dataset_root variable must be set. Check README')
@@ -65,19 +66,19 @@ class FireDSDataModule(LightningDataModule):
                                           problem_class=self.problem_class,
                                           train_val_test='train',
                                           dynamic_features=self.sel_dynamic_features,
-                                          static_features=self.sel_static_features,
+                                        #   static_features=self.sel_static_features,
                                           categorical_features=None, nan_fill=self.nan_fill, clc=clc)
         self.data_val = FireDataset_npy(dataset_root=dataset_root, access_mode=self.access_mode,
                                         problem_class=self.problem_class,
                                         train_val_test='val',
                                         dynamic_features=self.sel_dynamic_features,
-                                        static_features=self.sel_static_features,
+                                        # static_features=self.sel_static_features,
                                         categorical_features=None, nan_fill=self.nan_fill, clc=clc)
         self.data_test = FireDataset_npy(dataset_root=dataset_root, access_mode=self.access_mode,
                                          problem_class=self.problem_class,
                                          train_val_test='test',
                                          dynamic_features=self.sel_dynamic_features,
-                                         static_features=self.sel_static_features,
+                                        #  static_features=self.sel_static_features,
                                          categorical_features=None, nan_fill=self.nan_fill, clc=clc)
 
     @property

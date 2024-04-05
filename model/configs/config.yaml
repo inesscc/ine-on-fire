@@ -47,21 +47,16 @@ test_after_training: True
 
 seed: 1234
 
-# n = 35
 sel_dynamic_features: [
-    '1 km 16 days NDVI',
-#    '1 km 16 days EVI',
-#    'ET_500m',
-    'LST_Day_1km',
-    'LST_Night_1km',
-#    'Fpar_500m',
-#    'Lai_500m',
+  'ndvi',
+  'evi',
+  'ndwi'
 #    'era5_max_u10',
 #    'era5_max_v10',
-    'era5_max_d2m',
-    'era5_max_t2m',
-    'era5_max_sp',
-    'era5_max_tp',
+    # 'era5_max_d2m',
+    # 'era5_max_t2m',
+    # 'era5_max_sp',
+    # 'era5_max_tp',
 #    'era5_min_u10',
 #    'era5_min_v10',
 #    'era5_min_d2m',
@@ -75,26 +70,27 @@ sel_dynamic_features: [
 #    'era5_avg_sp',
 #    'era5_avg_tp',
 #    'smian',
-    'sminx',
+    # 'sminx',
 #    'fwi',
 #    'era5_max_wind_u10',
 #    'era5_max_wind_v10',
-    'era5_max_wind_speed',
+    # 'era5_max_wind_speed',
 #    'era5_max_wind_direction',
 #    'era5_max_rh',
-    'era5_min_rh',
+    # 'era5_min_rh',
 #    'era5_avg_rh',
 ]
 
-# n = 7
-sel_static_features : [
- 'dem_mean',
-# 'aspect_mean',
- 'slope_mean',
-# 'roughness_mean',
- 'roads_distance',
- 'waterway_distance',
- 'population_density',
-]
+# # n = 7
+# sel_static_features : [
+#  'dem_mean',
+# # 'aspect_mean',
+#  'slope_mean',
+# # 'roughness_mean',
+#  'roads_distance',
+#  'waterway_distance',
+#  'population_density',
+# ]
 
-clc: 'vec'
+# clc: 'vec'
+clc: null

@@ -33,7 +33,8 @@ model:
 
 
 datamodule:
-  batch_size: 256
+  # batch_size: 256
+  batch_size: 32
   num_workers: 16
   pin_memory: False
   access_mode: 'temporal'
@@ -42,4 +43,4 @@ datamodule:
   clc: ${clc}
 
 trainer:
-  max_epochs: 30
+  max_epochs: 2
