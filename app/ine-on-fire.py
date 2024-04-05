@@ -17,6 +17,9 @@ st.write("# INE ON FIRE 👋")
 
 #st.sidebar.success("Select a demo above.")
 
+st.image('pages/images/app_code.png', caption = '')
+
+
 st.markdown(
 """
 ### Esta aplicación muestra resultados de 2 modelos entrenados para la predicción de incendios en Valparaíso. 
