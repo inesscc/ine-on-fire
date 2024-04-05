@@ -4,20 +4,20 @@ import pandas as pd
 import pages.helpers as h
 
 
-st.set_page_config(page_title="Modelo 1")
+st.set_page_config(page_title="Modelo 2")
 
 tab1, tab2 = st.tabs(["Predicciones", "Métricas"])
 
 
 with tab1:
 
-   data = h.load_data("pages/data/predicciones_test.csv")
+   data = h.load_data("pages/data/predicciones_test_xgb.csv")
 
-   #dropdown_dates  = h.get_dates(data)
-   st.header("Predicciones para un mes")
-   #selected_date = st.selectbox("Selecciona alguna fecha", dropdown_dates)
-   filtered_data = h.filter_data(data )
-   print("Logré leer y filtrar")
+   dropdown_dates  = h.get_dates(data)
+   st.header("Predicciones para un día")
+   selected_date = st.selectbox("Selecciona alguna fecha", dropdown_dates)
+   filtered_data = h.filter_data(data, selected_date )
+   print(selected_date)
 
    
    fig = h.plot_pred("pred_XGB", filtered_data)
@@ -28,14 +28,13 @@ with tab1:
 
 
 with tab2:
-   st.header("Evaluación del modelo")
-   data = {
-        'Nombre': ['Juan', 'María', 'Carlos'],
-        'Edad': [25, 30, 35],
-        'Ciudad': ['México', 'Madrid', 'Buenos Aires']
-   }
+   
+   metricas = h.load_data("pages/data/metricas_xgb.csv")
 
-   df = pd.DataFrame(data)
+   st.header("Evaluación del modelo")
+   
+
+   df = pd.DataFrame(metricas)
 
    # Mostrar la tabla
    st.table(df)

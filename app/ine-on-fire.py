@@ -9,7 +9,9 @@ st.set_page_config(
 show_pages(
     [
         Page("ine-on-fire.py"),
-        Page("pages/lstm.py")
+        Page("pages/lstm.py"),
+        Page("pages/xgboost.py")
+
     ]
 )
 

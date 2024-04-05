@@ -4,3 +4,5 @@ __pycache__/
 venv/
 *.gz
 pruebas.ipynb
+*.zip
+app/pages/Descargas - Acceso directo.lnk
