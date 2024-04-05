@@ -98,6 +98,8 @@ def print_config(
         config_section = config.get(field)
         branch_content = str(config_section)
         if isinstance(config_section, DictConfig):
+            print(field)
+            print(config_section)
             branch_content = OmegaConf.to_yaml(config_section, resolve=resolve)
 
         branch.add(rich.syntax.Syntax(branch_content, "yaml"))
@@ -119,7 +121,7 @@ def log_hyperparameters(
         datamodule: pl.LightningDataModule,
         trainer: pl.Trainer,
         callbacks: List[pl.Callback],
-        logger: List[pl.loggers.LightningLoggerBase],
+        logger: List[pl.loggers.Logger],
 ) -> None:
     """This method controls which parameters from Hydra config are saved by Lightning loggers.
 
@@ -162,7 +164,7 @@ def finish(
         datamodule: pl.LightningDataModule,
         trainer: pl.Trainer,
         callbacks: List[pl.Callback],
-        logger: List[pl.loggers.LightningLoggerBase],
+        logger: List[pl.loggers.Logger],
 ) -> None:
     """Makes sure everything closed properly."""
 

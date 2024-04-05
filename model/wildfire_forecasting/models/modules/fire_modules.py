@@ -3,8 +3,8 @@ import torch
 from torch import nn
 import numpy as np
 from wildfire_forecasting.models.modules.convlstm import ConvLSTM
-from torchvision.models.resnet import resnet18
-from fastai.vision.models import unet
+# from torchvision.models.resnet import resnet18
+# from fastai.vision.models import unet
 
 np.seterr(divide='ignore', invalid='ignore')
 
