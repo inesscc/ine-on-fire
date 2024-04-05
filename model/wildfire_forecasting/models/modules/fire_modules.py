@@ -11,7 +11,8 @@ np.seterr(divide='ignore', invalid='ignore')
 class SimpleConvLSTM(nn.Module):
     def __init__(self, hparams: dict):
         super().__init__()
-        input_dim = len(hparams['static_features']) + len(hparams['dynamic_features'])
+        # input_dim = len(hparams['static_features']) + len(hparams['dynamic_features'])
+        input_dim = len(hparams['dynamic_features'])
         if hparams['clc'] == 'vec':
             input_dim += 10
         hidden_size = hparams['hidden_size']
@@ -59,7 +60,8 @@ class SimpleLSTM(nn.Module):
         super().__init__()
 
         # lstm part
-        input_dim = len(hparams['static_features']) + len(hparams['dynamic_features'])
+        # input_dim = len(hparams['static_features']) + len(hparams['dynamic_features'])
+        input_dim = len(hparams['dynamic_features'])        
         if hparams['clc'] == 'vec':
             input_dim += 10
         hidden_size = hparams['hidden_size']
