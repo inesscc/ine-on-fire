@@ -73,7 +73,8 @@ class FireDataset_npy(Dataset):
         self.positives_list = list((dataset_path / 'positives').glob('*dynamic.npy'))
         self.positives_list = list(zip(self.positives_list, [1] * (len(self.positives_list))))
         val_year = 2021
-        test_year = min(val_year + 1, 2022)
+        # test_year = min(val_year + 1, 2022)
+        test_year = 2022
 
         self.train_positive_list = [(x, y) for (x, y) in self.positives_list if int(x.stem[:4]) < val_year]
         self.val_positive_list = [(x, y) for (x, y) in self.positives_list if int(x.stem[:4]) == val_year]

@@ -3,8 +3,9 @@ defaults:
 
 watch_model:
   _target_: wildfire_forecasting.callbacks.wandb_callbacks.WatchModel
-  log: "all"
-  log_freq: 100
+  # log: "all"
+  log: "gradients"
+  log_freq: 10
 
 upload_code_as_artifact:
   _target_: wildfire_forecasting.callbacks.wandb_callbacks.UploadCodeAsArtifact

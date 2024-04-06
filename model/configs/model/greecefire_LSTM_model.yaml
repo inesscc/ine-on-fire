@@ -5,7 +5,8 @@ dynamic_features: ${sel_dynamic_features}
 hidden_size: 16
 lstm_layers: 1
 positive_weight: 0.5
-lr: 0.01
+# lr: 0.01
+lr: 0.001
 lr_scheduler_step: 100
 lr_scheduler_gamma: 0.1
 weight_decay: 0.035

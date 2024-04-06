@@ -90,6 +90,8 @@ def train(config: DictConfig) -> Optional[float]:
     log.info("Starting training!")
     trainer.fit(model=model, datamodule=datamodule)
 
+    log.info(f"trainer callback metrics: {trainer.callback_metrics}")
+
     # Evaluate model on test set, using the best model achieved during training
     if config.get("test_after_training") and not config.trainer.get("fast_dev_run"):
         log.info("Starting testing with best model!")
@@ -97,6 +99,8 @@ def train(config: DictConfig) -> Optional[float]:
 
     # Make sure everything closed properly
     log.info("Finalizing!")
+
+    log.info(f"trainer callback metrics: {trainer.callback_metrics}")
 
     utils.finish(
         config=config,
@@ -112,7 +116,13 @@ def train(config: DictConfig) -> Optional[float]:
 
     # Return metric score for hyperparameter optimization
     optimized_metric = config.get("optimized_metric")
+
+    log.info(f"optimized metric: {optimized_metric}")
+
+    log.info(f"trainer sanity checking: {trainer.sanity_checking}")
+
     if optimized_metric:
-        return trainer.callback_metrics[optimized_metric]
+        if not trainer.sanity_checking:
+            return trainer.callback_metrics[optimized_metric]
 
     # return

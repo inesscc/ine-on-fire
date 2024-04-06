@@ -9,7 +9,8 @@ defaults:
   - override /hydra/sweeper: optuna
 
 # choose metric which will be optimized by Optuna
-optimized_metric: "val/loss"
+# optimized_metric: "val/loss"
+optimized_metric: "val/acc"
 
 hydra:
   # here we define Optuna hyperparameter search
@@ -22,7 +23,8 @@ hydra:
     n_jobs: 1
 
     # 'minimize' or 'maximize' the objective
-    direction: minimize
+    # direction: minimize
+    direction: maximize
 
     # number of experiments that will be executed
     n_trials: 20

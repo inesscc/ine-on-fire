@@ -20,16 +20,17 @@ def combine_dynamic_static_inputs(dynamic, clc, access_mode):
         inputs = torch.cat(input_list, dim=1)
     elif access_mode == 'temporal':
         bsize, timesteps, _ = dynamic.shape
-        # static = static.unsqueeze(dim=1)
-        # repeat_list = [1 for _ in range(static.dim())]
-        # repeat_list[1] = timesteps
-        # static = static.repeat(repeat_list)
-        # input_list = [dynamic, static]
-        input_list = [dynamic]
-        if clc is not None:
-            clc = clc.unsqueeze(dim=1).repeat(repeat_list)
-            input_list.append(clc)
-        inputs = torch.cat(input_list, dim=2).float()
+        # # static = static.unsqueeze(dim=1)
+        # # repeat_list = [1 for _ in range(static.dim())]
+        # # repeat_list[1] = timesteps
+        # # static = static.repeat(repeat_list)
+        # # input_list = [dynamic, static]
+        # input_list = [dynamic]
+        # if clc is not None:
+        #     clc = clc.unsqueeze(dim=1).repeat(repeat_list)
+        #     input_list.append(clc)
+        # inputs = torch.cat(input_list, dim=2).float()
+        inputs = dynamic.float()
     else:
         bsize, timesteps, _, _, _ = dynamic.shape
         # static = static.unsqueeze(dim=1)
@@ -353,7 +354,7 @@ class LSTM_fire_model(LightningModule):
             # results = [loss_np[i][0]]
             results = np.array(results)
             opath = str(paths_str[i]).split("/")[-2]+"_"+paths_str[i].split("/")[-1].split(".npy")[0]
-            print(opath)
+            # print(opath)
 
             with open(f"/home/hugosoto/Work/git/ine-on-fire/model/data/valparaiso/npy/temporal/predictions/{opath}.npy", 'wb') as f:
                 np.save(f, results)

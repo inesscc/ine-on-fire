@@ -8,7 +8,8 @@ import seaborn as sn
 import torch
 import wandb
 from pytorch_lightning import Callback, Trainer
-from pytorch_lightning.loggers import LoggerCollection, WandbLogger
+# from pytorch_lightning.loggers import LoggerCollection, WandbLogger
+from pytorch_lightning.loggers import Logger, WandbLogger
 from pytorch_lightning.utilities import rank_zero_only
 from sklearn import metrics
 from sklearn.metrics import f1_score, precision_score, recall_score
@@ -21,7 +22,8 @@ def get_wandb_logger(trainer: Trainer) -> WandbLogger:
     if isinstance(trainer.logger, WandbLogger):
         return trainer.logger
 
-    if isinstance(trainer.logger, LoggerCollection):
+    # if isinstance(trainer.logger, LoggerCollection):
+    if isinstance(trainer.logger, Logger):
         for logger in trainer.logger:
             if isinstance(logger, WandbLogger):
                 return logger
@@ -41,7 +43,8 @@ class WatchModel(Callback):
     @rank_zero_only
     def on_train_start(self, trainer, pl_module):
         logger = get_wandb_logger(trainer=trainer)
-        logger.watch(model=trainer.model, log=self.log, log_freq=self.log_freq)
+        # logger.watch(model=trainer.model, log=self.log, log_freq=self.log_freq)
+        logger.watch(model=trainer.model, log=self.log)
 
 
 class UploadCodeAsArtifact(Callback):
@@ -103,7 +106,7 @@ class LogConfusionMatrix(Callback):
         self.ready = True
 
     def on_validation_batch_end(
-            self, trainer, pl_module, outputs, batch, batch_idx, dataloader_idx
+            self, trainer, pl_module, outputs, batch, batch_idx, dataloader_idx=0
     ):
         """Gather data from single batch."""
         if self.ready:
@@ -163,7 +166,7 @@ class LogF1PrecRecHeatmap(Callback):
         self.ready = True
 
     def on_validation_batch_end(
-            self, trainer, pl_module, outputs, batch, batch_idx, dataloader_idx
+            self, trainer, pl_module, outputs, batch, batch_idx, dataloader_idx=0
     ):
         """Gather data from single batch."""
         if self.ready:
