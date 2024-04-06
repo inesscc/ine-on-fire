@@ -33,7 +33,7 @@ def plot_pred(pred_col, filtered_data):
     fig = go.Figure(data=go.Scattergeo(
          lon=filtered_data.geometry.x,
          lat=filtered_data.geometry.y,
-         text=filtered_data["pred_XGB"],
+         text=filtered_data[pred_col],
          marker=dict(
             color=filtered_data[pred_col],
             colorscale='Viridis',  # Cambia 'Viridis' al esquema de color que prefieras

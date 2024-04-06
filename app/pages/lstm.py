@@ -11,16 +11,16 @@ tab1, tab2 = st.tabs(["Predicciones", "Métricas"])
 
 with tab1:
 
-   data = h.load_data("pages/data/predicciones_test.csv")
+   data = h.load_data("pages/data/predicciones_test_lstm.csv")
 
-   #dropdown_dates  = h.get_dates(data)
-   st.header("Predicciones para un mes")
-   #selected_date = st.selectbox("Selecciona alguna fecha", dropdown_dates)
-   filtered_data = h.filter_data(data )
-   print("Logré leer y filtrar")
+   dropdown_dates  = h.get_dates(data)
+   st.header("Predicciones para un día")
+   selected_date = st.selectbox("Selecciona alguna fecha", dropdown_dates)
+   filtered_data = h.filter_data(data, selected_date )
+   print(selected_date)
 
    
-   fig = h.plot_pred("pred_XGB", filtered_data)
+   fig = h.plot_pred("predicted_prob", filtered_data)
    
    print("Logré hacer todo el gráfico")
 
