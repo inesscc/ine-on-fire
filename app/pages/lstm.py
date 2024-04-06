@@ -37,6 +37,9 @@ with tab2:
    # Mostrar la tabla
    st.table(df)
 
+   st.write("### Matriz de confusión")
+   st.image('pages/images/matriz_confusion_lstm.png')
+
 
 css = '''
 <style>
