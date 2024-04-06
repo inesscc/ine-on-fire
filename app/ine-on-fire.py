@@ -19,7 +19,7 @@ st.write("# INE ON FIRE 👋")
 
 #st.sidebar.success("Select a demo above.")
 
-st.image('pages/images/app_code.png', caption = '')
+st.image('pages/images/fasat.png', caption = '',  width=450  )
 
 
 st.markdown(
