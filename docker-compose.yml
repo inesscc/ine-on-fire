@@ -8,3 +8,7 @@ services:
         - '8010:8501'
       expose:
         - '8501'
+      volumes:
+        - ./app/pages/data:/app-dataton/pages/data
+        - ./app/pages/images:/app-dataton/pages/images
+

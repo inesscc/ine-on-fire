@@ -40,21 +40,20 @@ format:
 ## Solución
 
 
-Identificar zonas de riesgo, para intervenir los territorios tempranamente 
+**Identificar zonas de riesgo, para intervenir los territorios tempranamente** 
 
 . . .
 
-¡¡PENDIENTE!!: Completar con imagen de predicciones para algún territorio 
-
+[<img src="imagenes/ejemplo_prediccion.png" width="520px"/>]{.center}
 
 . . .
 
-En producción, la aplicación hará predicciones con una periodicidad semanal
+##### En producción, la aplicación hará predicciones con una periodicidad semanal
   
 
 ## Arquitectura
 
-[<img src="imagenes/arquitectura.PNG" width="1000px"/>]{.center}
+[<img src="imagenes/arquitectura.png" width="1000px"/>]{.center}
 
 
 # ¡Veamos una demostración!

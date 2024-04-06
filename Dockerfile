@@ -14,8 +14,11 @@ RUN apt-get update && apt-get install -y \
 COPY requirements.txt /app-dataton/requirements.txt
 RUN pip3 install -r requirements.txt
 
-COPY app/app.py /app-dataton/app.py
-COPY app/helpers.py /app-dataton/helpers.py
+# Copiamos solo los archivos que contienen código
+COPY app/ine-on-fire.py /app-dataton/ine-on-fire.py
+COPY app/pages/helpers.py /app-dataton/pages/helpers.py
+COPY app/pages/lstm.py /app-dataton/pages/lstm.py
+COPY app/pages/xgboost.py /app-dataton/pages/xgboost.py
 
 
-ENTRYPOINT ["streamlit", "run", "app.py", "--server.port=8501", "--server.address=0.0.0.0"]
+ENTRYPOINT ["streamlit", "run", "ine-on-fire.py", "--server.port=8501", "--server.address=0.0.0.0"]

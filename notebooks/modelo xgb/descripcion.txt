@@ -1,0 +1,8 @@
+- Las metodologías aplicadas están a nivel de pixel, es decir, una fila corresponde a un pixel de Sentinel2.
+
+- Se presenta la realización de dos modelos de XGB, en donde se utilizó el procesamiento del set train-test del modelo xgb inicial (xgb_model_v1.pkl) para poder comparar de forma parcial el comportamiento de añadir tiempos en otras capturas para un mismo pixel.
+
+**Descripción:**
+- ModXGB_inicial (xgb_model_v1.pkl): Este modelo contiene información tanto del pixel antes de que ocurriera el incendio como la de la media del comportamiento pasado de capturas del satélite antes. Se realiza un filtro para realizar la media de al menos 3 imágenes.
+
+-  ModXGB_sin_tiempo (xgb_model_sin_tiempo.pkl): Este modelo contiene información del pixel antes de que ocurriera el incendio.

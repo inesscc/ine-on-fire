@@ -3,3 +3,7 @@ data/
 __pycache__/
 venv/
 ml_dpp/*
+*.gz
+pruebas.ipynb
+*.zip
+app/pages/Descargas - Acceso directo.lnk
