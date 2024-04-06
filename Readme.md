@@ -43,3 +43,11 @@ LSTM: Recibe como entrada las últimas 3 capturas de un pixel antes de un incend
 XGBoost: Recibe como entrada los datos de la captura inmediatamente anterior al incendio y un promedio de los momentos en t-1, t-2 y t-3. Adicionalmente, se incluyen datos de distancia y clima.
 
 - Para reproducir el entrenamiento del modelo XGBoost, consultar el notebook [notebooks/modelo xgb/ModXGB_sin_tiempo.ipynb](https://github.com/inesscc/ine-on-fire/blob/main/notebooks/modelo%20xgb/ModXGB_sin_tiempo.ipynb)
+
+## Presentación
+
+https://inesscc.github.io/ine-on-fire/#/section
+
+## Aplicación Demo
+
+http://64.23.252.231:8010/
