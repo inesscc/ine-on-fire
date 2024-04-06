@@ -29,16 +29,17 @@ with tab1:
 
 with tab2:
    st.header("Evaluación del modelo")
-   data = {
-        'Nombre': ['Juan', 'María', 'Carlos'],
-        'Edad': [25, 30, 35],
-        'Ciudad': ['México', 'Madrid', 'Buenos Aires']
-   }
+   metricas = h.load_data("pages/data/lstm_metrics.csv")
+  
 
-   df = pd.DataFrame(data)
+   df = pd.DataFrame(metricas)
 
    # Mostrar la tabla
    st.table(df)
+
+   st.write("### Matriz de confusión")
+   st.image('pages/images/matriz_confusion_lstm.png')
+
 
 css = '''
 <style>
