@@ -15,9 +15,25 @@ def get_dates(data):
     dropdown_dates = unique_dates
     return dropdown_dates
 
+def get_dates_2(data):
+    unique_dates = data.fecha_ini.unique()
+    dropdown_dates = unique_dates
+    return dropdown_dates
+
 
 def filter_data(data, filter):
     filtered_data = data[data.time == filter]
+    filtered_data = gpd.GeoDataFrame(filtered_data,
+                                    geometry=gpd.points_from_xy(filtered_data.x, filtered_data.y),
+                                    crs="EPSG:32719"
+
+                                    )
+    filtered_data = filtered_data.to_crs("EPSG:4326")
+
+    return filtered_data
+
+def filter_data_2(data, filter):
+    filtered_data = data[data.fecha_ini == filter]
     filtered_data = gpd.GeoDataFrame(filtered_data,
                                     geometry=gpd.points_from_xy(filtered_data.x, filtered_data.y),
                                     crs="EPSG:32719"
@@ -37,10 +53,13 @@ def plot_pred(pred_col, filtered_data):
          marker=dict(
             color=filtered_data[pred_col],
             colorscale='Viridis',  # Cambia 'Viridis' al esquema de color que prefieras
-            cmin=min(filtered_data[pred_col]),
-            cmax=max(filtered_data[pred_col]),
+            # cmin=min(filtered_data[pred_col]),
+            cmin=0.1,            
+            # cmax=max(filtered_data[pred_col]),
+            cmax=0.8,            
             colorbar=dict(
-                  title=pred_col
+                #   title=pred_col
+                  title="pred_prob"
             )
          ),
          mode='markers'

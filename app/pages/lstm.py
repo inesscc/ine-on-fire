@@ -13,10 +13,14 @@ with tab1:
 
    data = h.load_data("pages/data/predicciones_test_lstm.csv")
 
-   dropdown_dates  = h.get_dates(data)
+   # dropdown_dates  = h.get_dates(data)
+   dropdown_dates = sorted(h.get_dates_2(data))
+   print("lstm", dropdown_dates)
+
    st.header("Predicciones para un día")
    selected_date = st.selectbox("Selecciona alguna fecha", dropdown_dates)
-   filtered_data = h.filter_data(data, selected_date )
+   # filtered_data = h.filter_data(data, selected_date)
+   filtered_data = h.filter_data_2(data, selected_date)
    print(selected_date)
 
    
